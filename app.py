@@ -1,0 +1,2 @@
+# aplicación principal,
+
