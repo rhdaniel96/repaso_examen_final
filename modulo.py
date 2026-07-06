@@ -5,7 +5,8 @@
 
 
 def validar_codigo(codigo, productos):
-    if codigo.strip() == "":
+    codigo = codigo.strip().upper()
+    if codigo == "":
         return False
     elif codigo in productos:
         return False
@@ -31,10 +32,6 @@ def validar_precio(precio):
 def validar_disponible(opcion):
     opcion = opcion.strip().lower()
     if opcion == "s" or opcion == "n":
-        if opcion == "s":
-            disponible = True
-        elif opcion == "n":
-            disponible = False
         return True
     return False
     
@@ -51,4 +48,30 @@ def validar_vendidos(vendidos):
 
 
     
+# ---- librerías
 
+def agregar_producto(codigo, nombre, categoria, precio, disponible, stock, vendidos, productos, inventario):
+    codigo = codigo.strip().upper()
+
+    if codigo in productos:
+        return False
+
+    productos[codigo] = [nombre, categoria, precio, disponible]
+    inventario[codigo] = [stock, vendidos]
+
+    return True
+
+# ---------- MENÚ ----------
+
+def leer_opcion():
+    while True:
+        try:
+            opcion = int(input("Seleccione una opción: "))
+
+            if opcion >= 1 and opcion <= 7:
+                return opcion
+            else:
+                print("Debe seleccionar una opción válida")
+
+        except ValueError:
+            print("Debe seleccionar una opción válida")
